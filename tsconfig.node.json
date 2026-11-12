@@ -1,0 +1,14 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"lib": ["es2024"],
+		"types": ["node"]
+	},
+	"include": [
+		"scripts",
+		"src/**/*.test.*",
+		"src/**/*.node.ts",
+		"vite.config.ts",
+		"vitest.config.ts"
+	]
+}

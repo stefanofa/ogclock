@@ -1,0 +1,9 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"lib": ["es2024"],
+		"types": []
+	},
+	"include": ["src", "cloudflare.config.ts", ".cloudflare/types"],
+	"exclude": ["src/web/dom", "src/**/*.test.*", "src/**/*.node.ts"]
+}

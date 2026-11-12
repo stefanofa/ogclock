@@ -1,0 +1,42 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"includes": ["**", "!src/core/zones.gen.ts", "!**/*.bin"]
+	},
+	"formatter": {
+		"indentStyle": "tab",
+		"lineWidth": 100
+	},
+	"linter": {
+		"rules": {
+			"preset": "recommended",
+			"style": {
+				"noNonNullAssertion": "error",
+				"useImportType": "error"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"semicolons": "always"
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["src/og/**"],
+			"linter": {
+				"rules": {
+					"a11y": {
+						"noSvgWithoutTitle": "off"
+					}
+				}
+			}
+		}
+	]
+}
