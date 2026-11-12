@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ogclock · Send someone this minute</title>
+<meta name="description" content="Copy a link and paste it in any chat. The preview shows the minute you sent it.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/src/web/fonts/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/src/web/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/src/web/styles/index.css">
+<script type="module" src="/src/web/dom/main.ts"></script>
+</head>
+<body data-attr="data-copy=copy data-toast=toast data-sheet=sheet">
+<svg hidden aria-hidden="true">
+	<symbol id="icon-copy" viewBox="0 0 20 20"><rect x="6.75" y="6.75" width="10" height="10" rx="2.25" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M13.25 6.75V5.5C13.25 4.26 12.24 3.25 11 3.25H5.5C4.26 3.25 3.25 4.26 3.25 5.5V11C3.25 12.24 4.26 13.25 5.5 13.25H6.75" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+	<symbol id="icon-done" viewBox="0 0 20 20"><path d="M4.5 10.5L8.25 14.25L15.5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+<header class="bar">
+	<a class="brand" href="/">
+		<svg class="glyph" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+			<circle cx="11" cy="11" r="9.25" fill="none" stroke="#111111" stroke-width="1.75"/>
+			<path d="M11 11L15.37 9.91" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+			<path d="M11 11L9.65 17.36" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/>
+			<path class="hand" d="M11 11V4" stroke="#E4322B" stroke-width="1.1" stroke-linecap="round"/>
+			<circle cx="11" cy="11" r="1.4" fill="#E4322B"/>
+		</svg>
+		<span>ogclock</span>
+	</a>
+	<a class="text-link" href="#how">How it works</a>
+</header>
+
+<main>
+	<section class="hero">
+		<div class="pitch">
+			<p class="notice" data-attr="hidden=notice-hidden" hidden>
+				<span class="mini"><img data-fade="image" alt="" width="1200" height="630"></span>
+				<span><b>Someone sent you a clock.</b> Send one back.</span>
+			</p>
+			<h1>Send someone this minute.</h1>
+			<p class="lede">
+				<span class="wide">Copy a link and paste it in any chat. The preview shows the minute you sent it, and it stays that way.</span>
+				<span class="narrow">Paste the link in any chat. The preview shows the minute you sent it.</span>
+			</p>
+			<div class="field" data-action="copy">
+				<span class="link"><span class="host"><span data-text="host">ogclock.app</span>/</span><span class="slug" data-text="link"></span></span>
+				<button type="button" class="copy" data-action="copy">
+					<span class="face idle">
+						<svg width="20" height="20" aria-hidden="true"><use href="#icon-copy"/></svg>
+						Copy link
+					</span>
+					<span class="face done" aria-hidden="true">
+						<svg width="20" height="20" aria-hidden="true"><use href="#icon-done"/></svg>
+						Copied
+					</span>
+				</button>
+			</div>
+			<div class="under">
+				<p class="helper">Every copy is a new link, so every send gets its own minute.</p>
+				<div class="toast" aria-hidden="true">
+					<span class="mini"><img data-fade="image" alt="" width="1200" height="630"></span>
+					<span><b>Copied.</b> <span>Paste it now and they'll see <b data-text="time">14:32</b>.</span></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="stage">
+			<p class="label">What they'll see</p>
+			<figure class="card">
+				<div class="frame"><img data-fade="image" data-attr="alt=line" alt="" width="1200" height="630" fetchpriority="high"></div>
+				<figcaption><span class="caption" data-text="line"></span><span class="domain" data-text="host">ogclock.app</span></figcaption>
+			</figure>
+			<div class="meter">
+				<div class="track"><div class="fill" data-attr="style=done"></div></div>
+				<p class="live">
+					<span class="dot" aria-hidden="true"></span>
+					<span class="note"><b>Live.</b> <span class="wide">It changes every minute until you send it.</span><span class="narrow">Changes every minute.</span></span>
+					<span class="count"><span data-text="next"></span> in <span data-text="left"></span></span>
+				</p>
+			</div>
+
+			<button type="button" class="choose" data-action="open" aria-haspopup="dialog">
+				<span>Theme</span>
+				<span class="choice">
+					<span class="mini"><img data-fade="image" alt="" width="1200" height="630"></span>
+					<span data-text="choice">Auto</span>
+					<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5L10.5 8L6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</span>
+			</button>
+			<div class="scrim" data-action="close"></div>
+			<div class="picker">
+				<div class="sheet-head">
+					<span class="grabber" aria-hidden="true"></span>
+					<h2 class="label" id="theme-label">Theme</h2>
+					<button type="button" class="sheet-done" data-action="close">Done</button>
+				</div>
+				<div class="tiles" role="radiogroup" aria-labelledby="theme-label" data-tiles></div>
+			</div>
+		</div>
+	</section>
+
+	<section class="how" id="how">
+		<div class="intro">
+			<h2>How it works</h2>
+			<p>Chat apps fetch a preview image once, when the link is first shared. ogclock draws that image for the minute it's asked.</p>
+		</div>
+		<div>
+			<ol class="steps">
+				<li><time>14:32:05</time><div><h3>You copy a link.</h3><p>Each copy is a new link. It carries your timezone, nothing else.</p></div></li>
+				<li><time>14:32:41</time><div><h3>You paste it in a chat.</h3><p>The app asks ogclock for a preview. ogclock draws one for 14:32 and hands it over.</p></div></li>
+				<li><time>Next Tuesday</time><div><h3>They still see 14:32.</h3><p>Apps keep the first preview they fetch, so the minute stays put. That's also why every send gets a fresh link.</p></div></li>
+			</ol>
+			<div class="notes">
+				<div><h3>Privacy</h3><p>No tracking, no accounts. The link holds your timezone and nothing else.</p></div>
+				<div><h3>Where it works</h3><p>Anywhere a pasted link turns into a preview card. Hacker News doesn't do that, which is why you're reading this.</p></div>
+			</div>
+		</div>
+	</section>
+
+	<section class="closer">
+		<p class="big">It's <span data-text="time">14:32</span>.<br><span class="faded">Not for long.</span></p>
+		<button type="button" class="copy large" data-action="copy">
+			<span class="face idle">
+				<svg width="20" height="20" aria-hidden="true"><use href="#icon-copy"/></svg>
+				Copy link
+			</span>
+			<span class="face done" aria-hidden="true">
+				<svg width="20" height="20" aria-hidden="true"><use href="#icon-done"/></svg>
+				Copied
+			</span>
+		</button>
+	</section>
+</main>
+
+<footer class="foot">
+	<span class="brand small">
+		<svg width="18" height="18" viewBox="0 0 22 22" aria-hidden="true">
+			<circle cx="11" cy="11" r="9.25" fill="none" stroke="#111111" stroke-width="1.9"/>
+			<path d="M11 11L15.37 9.91" stroke="#111111" stroke-width="2.2" stroke-linecap="round"/>
+			<path d="M11 11L9.65 17.36" stroke="#111111" stroke-width="1.8" stroke-linecap="round"/>
+			<path d="M11 11L4.94 7.5" stroke="#E4322B" stroke-width="1.3" stroke-linecap="round"/>
+			<circle cx="11" cy="11" r="1.5" fill="#E4322B"/>
+		</svg>
+		<span data-text="host">ogclock.app</span>
+	</span>
+	<span>Every minute happens once.</span>
+</footer>
+
+<div class="actions">
+	<button type="button" class="copy" data-action="copy">
+		<span class="face idle">
+			<svg width="20" height="20" aria-hidden="true"><use href="#icon-copy"/></svg>
+			Copy link
+		</span>
+		<span class="face done" aria-hidden="true">
+			<svg width="20" height="20" aria-hidden="true"><use href="#icon-done"/></svg>
+			Copied
+		</span>
+	</button>
+	<button type="button" class="share" data-action="share" aria-label="Share link">
+		<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 13.5V3M11 3L7 7M11 3L15 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.5 10H6.5C5.4 10 4.5 10.9 4.5 12V17C4.5 18.1 5.4 19 6.5 19H15.5C16.6 19 17.5 18.1 17.5 17V12C17.5 10.9 16.6 10 15.5 10H14.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+	</button>
+</div>
+
+<p class="sr" aria-live="polite" data-text="announce"></p>
+<script id="boot" type="application/json"></script>
+</body>
+</html>

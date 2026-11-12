@@ -1,0 +1,108 @@
+/* Station clock: white dial, black hands, one red seconds hand for whatever is live. */
+
+:root {
+	--dial: #ffffff;
+	--hands: #111111;
+	--seconds: #e4322b;
+	--numerals: #5c5c5c;
+	--faded: #8c8c8c;
+	--index: #dadada;
+	--enamel: #f2f2f2;
+	--hairline: #ebebeb;
+	--signal: #1f5bff;
+	/* Shadows: the hands' ink at low alpha. */
+	--ring: 0 0 0 1px #11111114;
+	--thumb-ring: 0 0 0 1px #1111111a;
+	--thumb-ring-hover: 0 0 0 1px #1111113d;
+	--card-shadow: var(--ring), 0 1px 2px #1111110a, 0 24px 48px -28px #11111147;
+	--toast-shadow: 0 12px 32px -12px #11111173;
+	--sheet-shadow: 0 -1px 0 #1111110f, 0 -16px 48px -8px #11111138;
+	--display: "Inter Tight", "Inter Tight Fallback", system-ui, sans-serif;
+	--text: "Inter", "Inter Fallback", system-ui, sans-serif;
+	--mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+	--gutter: clamp(24px, 5.556vw, 80px);
+	--sheet: cubic-bezier(0.2, 0.8, 0.2, 1);
+	color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+[hidden] {
+	/* biome-ignore lint/complexity/noImportantStyles: hidden must beat any display rule */
+	display: none !important;
+}
+
+body {
+	margin: 0;
+	background: var(--dial);
+	color: var(--hands);
+	font: 400 16px / 1.5 var(--text);
+	font-synthesis: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+p,
+ol {
+	margin: 0;
+	padding: 0;
+}
+
+b {
+	font-weight: 600;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+}
+
+:focus-visible {
+	outline: 2px solid var(--signal);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+.sr {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.narrow {
+	display: none;
+}
+
+.bar,
+.hero,
+.how,
+.closer,
+.foot {
+	width: min(100% - 2 * var(--gutter), 1280px);
+	margin-inline: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hand {
+		display: none;
+	}
+	*,
+	*::before,
+	*::after {
+		/* biome-ignore lint/complexity/noImportantStyles: reduced motion overrides every transition */
+		transition-duration: 0s !important;
+		/* biome-ignore lint/complexity/noImportantStyles: reduced motion overrides every transition */
+		transition-delay: 0s !important;
+	}
+}

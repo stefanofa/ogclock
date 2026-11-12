@@ -1,0 +1,743 @@
+/* Each section's :root lists the sizes phone.css changes; the rules below read them. */
+
+/* Header */
+
+:root {
+	--bar-height: 72px;
+	--brand-gap: 8px;
+	--brand-type: 21px / 24px;
+}
+
+.bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: var(--bar-height);
+}
+
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--brand-gap);
+	color: var(--hands);
+	text-decoration: none;
+	font: 700 var(--brand-type) var(--display);
+	letter-spacing: -0.03em;
+}
+
+.hand {
+	transform-box: view-box;
+	transform-origin: 11px 11px;
+}
+
+.text-link {
+	display: inline-flex;
+	align-items: center;
+	height: 44px;
+	padding-inline: 4px;
+	color: var(--hands);
+	font: 500 15px / 20px var(--text);
+	text-decoration: none;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 4px;
+}
+
+.text-link:hover {
+	text-decoration-line: underline;
+}
+
+/* Pictures: every <img> fills its box, so a crossfade ghost can sit exactly on top. */
+
+.frame,
+.mini,
+.thumb,
+.quad > span {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	background: var(--dial);
+}
+
+.frame > img,
+.mini > img,
+.thumb > img,
+.quad > span > img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Hero */
+
+:root {
+	--hero-gap: 64px;
+	--hero-top: 24px;
+	--pitch-top: 30px;
+	--pitch-top-with-notice: 0;
+	--notice-align: start;
+	--notice-gap: 14px;
+	--notice-padding: 8px 20px 8px 8px;
+	--notice-radius: 16px;
+	--notice-size: 17px;
+	--notice-line: 24px;
+	--notice-mini-width: 76px;
+	--notice-mini-height: 40px;
+	--notice-mini-radius: 7px;
+	--notice-after: 28px;
+	--h1-width: 472px;
+	--h1-type: 72px / 70px;
+	--lede-width: 420px;
+	--lede-top: 20px;
+	--lede-size: 19px;
+	--lede-line: 29px;
+	--toast-height: 48px;
+	--toast-padding: 0 18px 0 8px;
+	--toast-size: 15px;
+	--toast-line: 20px;
+	--toast-mini-width: 60px;
+	--toast-mini-height: 32px;
+}
+
+.hero {
+	display: grid;
+	grid-template-columns: minmax(0, 720px);
+	justify-content: center;
+	row-gap: var(--hero-gap);
+	padding-top: var(--hero-top);
+}
+
+.pitch {
+	display: flex;
+	flex-direction: column;
+	padding-top: var(--pitch-top);
+}
+
+.pitch:has(> .notice:not([hidden])) {
+	padding-top: var(--pitch-top-with-notice);
+}
+
+.notice {
+	display: flex;
+	align-items: center;
+	align-self: var(--notice-align);
+	gap: var(--notice-gap);
+	padding: var(--notice-padding);
+	border-radius: var(--notice-radius);
+	background: var(--enamel);
+	font-size: var(--notice-size);
+	line-height: var(--notice-line);
+}
+
+.notice .mini {
+	width: var(--notice-mini-width);
+	height: var(--notice-mini-height);
+	border-radius: var(--notice-mini-radius);
+	box-shadow: var(--ring);
+}
+
+h1 {
+	max-width: var(--h1-width);
+	font: 800 var(--h1-type) var(--display);
+	letter-spacing: -0.045em;
+}
+
+.notice:not([hidden]) + h1 {
+	padding-top: var(--notice-after);
+}
+
+.lede {
+	max-width: var(--lede-width);
+	padding-top: var(--lede-top);
+	color: var(--numerals);
+	font-size: var(--lede-size);
+	line-height: var(--lede-line);
+}
+
+.field {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	width: 100%;
+	max-width: 472px;
+	height: 68px;
+	margin-top: 44px;
+	padding: 0 8px 0 22px;
+	border: 1.5px solid var(--index);
+	border-radius: 18px;
+	background: var(--dial);
+	cursor: pointer;
+}
+
+.link {
+	display: flex;
+	min-width: 0;
+	font: 500 17px / 24px var(--mono);
+	letter-spacing: -0.01em;
+	white-space: nowrap;
+}
+
+.host {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: var(--numerals);
+}
+
+.slug {
+	flex-shrink: 0;
+}
+
+/* Copy: one fixed box, two faces stacked in it, so "Copied" never moves the layout. */
+
+.copy {
+	display: inline-grid;
+	place-items: center;
+	flex-shrink: 0;
+	width: 150px;
+	height: 52px;
+	padding: 0 4px 0 0;
+	border: 0;
+	border-radius: 12px;
+	background: var(--hands);
+	color: var(--dial);
+	font: 600 17px / 20px var(--text);
+	cursor: pointer;
+	transition:
+		background-color 120ms ease,
+		scale 100ms ease;
+}
+
+.copy:hover {
+	background: #2b2b2b;
+}
+
+.copy:active {
+	background: #000000;
+	scale: 0.97;
+}
+
+.copy:focus-visible {
+	border-radius: 12px;
+}
+
+.face {
+	grid-area: 1 / 1;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	white-space: nowrap;
+	transition: opacity 150ms ease;
+}
+
+.face.done,
+[data-copy="copied"] .face.idle {
+	opacity: 0;
+}
+
+[data-copy="copied"] .face.done {
+	opacity: 1;
+}
+
+.under {
+	display: grid;
+	margin-top: 14px;
+}
+
+.helper,
+.toast {
+	grid-area: 1 / 1;
+}
+
+.helper {
+	padding-left: 2px;
+	color: var(--numerals);
+	font-size: 15px;
+	line-height: 22px;
+	transition: opacity 200ms ease;
+}
+
+.toast {
+	display: flex;
+	align-items: center;
+	justify-self: start;
+	gap: 12px;
+	height: var(--toast-height);
+	padding: var(--toast-padding);
+	border-radius: 14px;
+	background: var(--hands);
+	box-shadow: var(--toast-shadow);
+	color: var(--dial);
+	font-size: var(--toast-size);
+	line-height: var(--toast-line);
+	white-space: nowrap;
+	opacity: 0;
+	translate: 0 8px;
+	visibility: hidden;
+	pointer-events: none;
+	transition:
+		opacity 200ms ease,
+		translate 200ms ease,
+		visibility 0s 200ms;
+}
+
+.toast .mini {
+	width: var(--toast-mini-width);
+	height: var(--toast-mini-height);
+	border-radius: 6px;
+}
+
+[data-toast="shown"] .toast {
+	opacity: 1;
+	translate: 0 0;
+	visibility: visible;
+	transition:
+		opacity 200ms ease,
+		translate 200ms ease;
+}
+
+[data-toast="shown"] .helper {
+	opacity: 0;
+}
+
+/* Stage: the preview, as a chat app would unfurl it */
+
+:root {
+	--stage-top: 0;
+	--label-size: 13px;
+	--label-height: 34px;
+	--label-padding: 0 2px 12px;
+	--card-radius: 20px;
+	--caption-gap: 2px;
+	--caption-padding: 14px 20px 16px;
+	--caption-size: 16px;
+	--caption-line: 22px;
+	--domain-size: 14px;
+	--domain-line: 20px;
+	--meter-gap: 12px;
+	--meter-top: 16px;
+	--live-gap: 8px;
+	--live-size: 15px;
+	--live-line: 22px;
+	--dot: 8px;
+	--count-type: 14px / 20px;
+}
+
+.stage {
+	padding-top: var(--stage-top);
+}
+
+.label {
+	color: var(--numerals);
+	font: 600 var(--label-size) / 16px var(--text);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.stage > .label {
+	display: flex;
+	align-items: center;
+	height: var(--label-height);
+	padding: var(--label-padding);
+}
+
+.card {
+	margin: 0;
+	overflow: clip;
+	border-radius: var(--card-radius);
+	background: var(--enamel);
+	box-shadow: var(--card-shadow);
+}
+
+.frame {
+	aspect-ratio: 1200 / 630;
+}
+
+figcaption {
+	display: flex;
+	flex-direction: column;
+	gap: var(--caption-gap);
+	padding: var(--caption-padding);
+}
+
+.caption {
+	font-weight: 600;
+	font-size: var(--caption-size);
+	line-height: var(--caption-line);
+}
+
+.domain {
+	color: var(--numerals);
+	font-size: var(--domain-size);
+	line-height: var(--domain-line);
+}
+
+.meter {
+	display: flex;
+	flex-direction: column;
+	gap: var(--meter-gap);
+	padding: var(--meter-top) 2px 0;
+}
+
+.track {
+	height: 2px;
+	overflow: hidden;
+	border-radius: 1px;
+	background: var(--hairline);
+}
+
+.fill {
+	height: 100%;
+	background: var(--seconds);
+	transform: scaleX(var(--done, 0));
+	transform-origin: left;
+}
+
+.live {
+	display: flex;
+	align-items: center;
+	gap: var(--live-gap);
+	color: var(--numerals);
+	font-size: var(--live-size);
+	line-height: var(--live-line);
+}
+
+.dot {
+	flex-shrink: 0;
+	width: var(--dot);
+	height: var(--dot);
+	border-radius: 4px;
+	background: var(--seconds);
+}
+
+.note b {
+	font-weight: 500;
+	color: var(--hands);
+}
+
+.count {
+	margin-left: auto;
+	padding-left: 16px;
+	font: 500 var(--count-type) var(--mono);
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+/* Themes: inline tiles on desktop, a bottom sheet on phones */
+
+:root {
+	/* Auto's column carries 4px extra so it sits 16px from the grid, as drawn. Tiles may give
+	   up a few pixels each before a row drops one, so a classic scrollbar does not cost a column. */
+	--tiles-columns: 140px repeat(auto-fill, minmax(100px, 1fr));
+	--tiles-gap: 16px 12px;
+	--tiles-top: 0;
+	--auto-rows: span 2;
+	--auto-width: 136px;
+	--auto-aspect: 136 / 134;
+	--auto-radius: 10px;
+	--auto-name-top: 2px;
+}
+
+.choose,
+.scrim,
+.grabber,
+.sheet-done {
+	display: none;
+}
+
+.picker {
+	padding-top: 26px;
+}
+
+.sheet-head {
+	display: flex;
+	align-items: center;
+	height: 32px;
+	margin-bottom: 12px;
+	padding-inline: 2px;
+}
+
+.tiles {
+	display: grid;
+	grid-template-columns: var(--tiles-columns);
+	gap: var(--tiles-gap);
+	padding-top: var(--tiles-top);
+}
+
+.tile {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--numerals);
+	text-align: left;
+	cursor: pointer;
+	transition: translate 150ms ease;
+}
+
+.tile:focus-visible {
+	outline: none;
+}
+
+.thumb {
+	width: 100%;
+	aspect-ratio: 104 / 55;
+	border-radius: 8px;
+	box-shadow: var(--thumb-ring);
+	transition: box-shadow 150ms ease;
+}
+
+.tile-name {
+	padding-left: 2px;
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 16px;
+	transition: color 150ms ease;
+}
+
+.tile-note {
+	margin-top: -6px;
+	padding-left: 2px;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+.tile.auto {
+	grid-row: var(--auto-rows);
+	width: var(--auto-width);
+}
+
+.tile.auto .thumb {
+	aspect-ratio: var(--auto-aspect);
+	border-radius: var(--auto-radius);
+}
+
+.tile.auto .tile-name {
+	padding-top: var(--auto-name-top);
+}
+
+.quad {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	grid-template: 1fr 1fr / 1fr 1fr;
+}
+
+@media (hover: hover) {
+	.tile:hover {
+		translate: 0 -2px;
+	}
+	.tile:hover .thumb {
+		box-shadow: var(--thumb-ring-hover);
+	}
+	.tile:hover .tile-name {
+		color: var(--hands);
+	}
+}
+
+.tile[aria-checked="true"] .thumb {
+	box-shadow:
+		0 0 0 2px var(--dial),
+		0 0 0 4px var(--hands);
+}
+
+.tile[aria-checked="true"] .tile-name {
+	color: var(--hands);
+	font-weight: 600;
+}
+
+.tile:focus-visible .thumb {
+	box-shadow:
+		0 0 0 2px var(--dial),
+		0 0 0 4px var(--signal);
+}
+
+.tile[aria-checked="true"]:focus-visible .thumb {
+	box-shadow:
+		0 0 0 2px var(--dial),
+		0 0 0 4px var(--hands),
+		0 0 0 6px var(--signal);
+}
+
+/* How it works */
+
+:root {
+	--how-gap: 40px;
+	--how-top: 152px;
+	--how-type: 44px / 46px;
+	--step-gap: 24px;
+	--step-padding: 24px 0 28px;
+	--step-time-width: 136px;
+	--step-time-type: 15px / 28px;
+	--step-title-type: 21px / 28px;
+	--step-text-size: 17px;
+	--step-text-line: 26px;
+	--notes-gap: 40px;
+	--notes-padding: 36px 0 0 160px;
+	--notes-width: 250px;
+	--notes-title-type: 13px / 16px;
+}
+
+.how {
+	display: grid;
+	grid-template-columns: minmax(0, 720px);
+	justify-content: center;
+	row-gap: var(--how-gap);
+	padding-top: var(--how-top);
+}
+
+.intro {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.how h2 {
+	font: 800 var(--how-type) var(--display);
+	letter-spacing: -0.04em;
+}
+
+.intro p {
+	max-width: 380px;
+	color: var(--numerals);
+	font-size: 17px;
+	line-height: 26px;
+}
+
+.steps {
+	list-style: none;
+	border-bottom: 1px solid var(--hairline);
+}
+
+.steps li {
+	display: flex;
+	gap: var(--step-gap);
+	padding: var(--step-padding);
+	border-top: 1px solid var(--hairline);
+}
+
+.steps time {
+	flex-shrink: 0;
+	width: var(--step-time-width);
+	color: var(--numerals);
+	font: 500 var(--step-time-type) var(--mono);
+	font-variant-numeric: tabular-nums;
+}
+
+.steps div {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.steps h3 {
+	font: 700 var(--step-title-type) var(--display);
+	letter-spacing: -0.015em;
+}
+
+.steps p {
+	max-width: 540px;
+	color: var(--numerals);
+	font-size: var(--step-text-size);
+	line-height: var(--step-text-line);
+}
+
+.notes {
+	display: flex;
+	gap: var(--notes-gap);
+	padding: var(--notes-padding);
+}
+
+.notes div {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: var(--notes-width);
+}
+
+.notes h3 {
+	font: 600 var(--notes-title-type) var(--text);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.notes p {
+	color: var(--numerals);
+	font-size: 15px;
+	line-height: 23px;
+}
+
+/* Closer and footer */
+
+:root {
+	--closer-top: 160px;
+	--closer-bottom: 56px;
+	--big-type: 88px / 84px;
+	--foot-height: 88px;
+}
+
+.closer {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 32px;
+	margin-top: var(--closer-top);
+	padding-bottom: var(--closer-bottom);
+	border-bottom: 1px solid var(--hairline);
+}
+
+.big {
+	font: 800 var(--big-type) var(--display);
+	letter-spacing: -0.05em;
+	font-variant-numeric: tabular-nums;
+}
+
+.faded {
+	color: var(--faded);
+}
+
+.copy.large {
+	width: auto;
+	height: 60px;
+	padding: 0 28px 0 24px;
+	border-radius: 14px;
+}
+
+.foot {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: var(--foot-height);
+	color: var(--numerals);
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.brand.small {
+	color: var(--hands);
+	font: 500 14px / 20px var(--text);
+	letter-spacing: 0;
+}
+
+.actions {
+	display: none;
+}
+
+/* Wide: pitch and stage side by side, as on the 1440 artboard */
+
+@media (min-width: 1200px) {
+	.hero,
+	.how {
+		grid-template-columns: 472px minmax(0, 720px);
+		column-gap: clamp(48px, 6.1vw, 88px);
+		justify-content: space-between;
+	}
+	.hero {
+		align-items: start;
+	}
+}

@@ -1,0 +1,44 @@
+@font-face {
+	font-family: "Inter Tight";
+	src: url("../fonts/inter-tight.woff2") format("woff2");
+	font-weight: 100 900;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Inter";
+	src: url("../fonts/inter.woff2") format("woff2");
+	font-weight: 100 900;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Geist Mono";
+	src: url("../fonts/geist-mono.woff2") format("woff2");
+	font-weight: 100 900;
+	font-display: swap;
+}
+/* Local fonts stretched to the web fonts' metrics, so the swap moves nothing. Measured in
+   Chrome: width of a sample line at 100px, and fontBoundingBox ascent and descent. */
+@font-face {
+	font-family: "Inter Tight Fallback";
+	src: local("Arial");
+	size-adjust: 98.6%;
+	ascent-override: 98.3%;
+	descent-override: 24.3%;
+	line-gap-override: 0%;
+}
+@font-face {
+	font-family: "Inter Fallback";
+	src: local("Arial");
+	size-adjust: 105.9%;
+	ascent-override: 91.6%;
+	descent-override: 22.7%;
+	line-gap-override: 0%;
+}
+@font-face {
+	font-family: "Geist Mono Fallback";
+	src: local("Menlo"), local("Consolas"), local("Courier New");
+	size-adjust: 99.7%;
+	ascent-override: 101.3%;
+	descent-override: 29.1%;
+	line-gap-override: 0%;
+}
